@@ -1,9 +1,6 @@
 package bam.web.demo.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Ville {
@@ -11,12 +8,14 @@ public class Ville {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nom;
+    private Region region;
 
     public Ville() {
     }
 
-    public Ville(String nom) {
+    public Ville(String nom, Region region) {
         this.nom = nom;
+        this.region = region;
     }
 
     public String getNom() {
@@ -25,5 +24,15 @@ public class Ville {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "region_id")
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }
