@@ -1,9 +1,7 @@
 package bam.web.demo.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Facteur {
@@ -14,13 +12,17 @@ public class Facteur {
     private String nom;
     private String prenom;
 
+    @OneToMany(mappedBy = "facteur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Tournee> tournees;
+
     public Facteur() {
     }
 
-    public Facteur(String matricule, String nom, String prenom) {
+    public Facteur(String matricule, String nom, String prenom, Set<Tournee> tournees) {
         this.matricule = matricule;
         this.nom = nom;
         this.prenom = prenom;
+        this.tournees = tournees;
     }
 
     public String getMatricule() {
@@ -45,5 +47,13 @@ public class Facteur {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public Set<Tournee> getTournees() {
+        return tournees;
+    }
+
+    public void setTournees(Set<Tournee> tournees) {
+        this.tournees = tournees;
     }
 }
