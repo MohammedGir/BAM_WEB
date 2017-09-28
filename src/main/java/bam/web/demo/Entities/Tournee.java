@@ -2,6 +2,7 @@ package bam.web.demo.Entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Tournee {
@@ -12,6 +13,9 @@ public class Tournee {
     private Date dateTournee;
     private  double trajetLongeur;
     private  double MntIndemnite;
+
+    @OneToMany(mappedBy = "tournee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<BoiteLettre> boiteLettres;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cyclo_id")
@@ -29,7 +33,7 @@ public class Tournee {
     }
 
     public Tournee(long numero, Date dateTournee, double trajetLongeur, double mntIndemnite,
-                   Site site,Facteur facteur, Cyclo cyclo) {
+                   Site site, Facteur facteur, Cyclo cyclo, Set<BoiteLettre> boiteLettres) {
         this.numero = numero;
         this.dateTournee = dateTournee;
         this.trajetLongeur = trajetLongeur;
@@ -37,6 +41,7 @@ public class Tournee {
         this.site = site;
         this.facteur = facteur;
         this.cyclo = cyclo;
+        this.boiteLettres = boiteLettres;
     }
 
 
@@ -94,5 +99,13 @@ public class Tournee {
 
     public void setCyclo(Cyclo cyclo) {
         this.cyclo = cyclo;
+    }
+
+    public Set<BoiteLettre> getBoiteLettres() {
+        return boiteLettres;
+    }
+
+    public void setBoiteLettres(Set<BoiteLettre> boiteLettres) {
+        this.boiteLettres = boiteLettres;
     }
 }

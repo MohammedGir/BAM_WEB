@@ -1,9 +1,6 @@
 package bam.web.demo.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class BoiteLettre {
@@ -15,14 +12,19 @@ public class BoiteLettre {
     private int cp ;
     private boolean etat;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tournee_id")
+    private Tournee tournee;
+
     public BoiteLettre() {
     }
 
-    public BoiteLettre(String adresse, String type, int cp, boolean etat) {
+    public BoiteLettre(String adresse, String type, int cp, boolean etat,Tournee tournee) {
         this.adresse = adresse;
         this.type = type;
         this.cp = cp;
         this.etat = etat;
+        this.tournee = tournee;
     }
 
     public Long getId() {
@@ -63,5 +65,13 @@ public class BoiteLettre {
 
     public void setEtat(boolean etat) {
         this.etat = etat;
+    }
+
+    public Tournee getTournee() {
+        return tournee;
+    }
+
+    public void setTournee(Tournee tournee) {
+        this.tournee = tournee;
     }
 }
