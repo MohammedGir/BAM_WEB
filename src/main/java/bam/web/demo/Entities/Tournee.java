@@ -1,9 +1,6 @@
 package bam.web.demo.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -16,15 +13,21 @@ public class Tournee {
     private  double trajetLongeur;
     private  double MntIndemnite;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id")
+    private Site site;
+
     public Tournee() {
     }
 
-    public Tournee(long numero, Date dateTournee, double trajetLongeur, double mntIndemnite) {
+    public Tournee(long numero, Date dateTournee, double trajetLongeur, double mntIndemnite,Site site) {
         this.numero = numero;
         this.dateTournee = dateTournee;
         this.trajetLongeur = trajetLongeur;
-        MntIndemnite = mntIndemnite;
+        this.MntIndemnite = mntIndemnite;
+        this.site = site;
     }
+
 
     public long getNumero() {
         return numero;
@@ -56,5 +59,13 @@ public class Tournee {
 
     public void setMntIndemnite(double mntIndemnite) {
         MntIndemnite = mntIndemnite;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
     }
 }

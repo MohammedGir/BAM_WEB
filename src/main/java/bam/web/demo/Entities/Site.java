@@ -12,6 +12,9 @@ public class Site {
     private String Type;
 
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Tournee> tournees;
+
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Quartier> quartiers;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -22,11 +25,20 @@ public class Site {
     public Site() {
     }
 
-    public Site(String nom, String type, Set<Quartier> quartiers,Ville ville) {
+    public Site(String nom, String type, Set<Quartier> quartiers,Ville ville, Set<Tournee> tournees) {
         this.nom = nom;
         Type = type;
         this.quartiers = quartiers;
         this.ville = ville;
+        this.tournees = tournees;
+    }
+
+    public Set<Tournee> getTournees() {
+        return tournees;
+    }
+
+    public void setTournees(Set<Tournee> tournees) {
+        this.tournees = tournees;
     }
 
     public Ville getVille() {
