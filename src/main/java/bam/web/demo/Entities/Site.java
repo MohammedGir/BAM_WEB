@@ -14,17 +14,28 @@ public class Site {
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Quartier> quartiers;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ville_id")
+    private Ville ville;
+
 
     public Site() {
     }
 
-    public Site(String nom, String type, Set<Quartier> quartiers) {
+    public Site(String nom, String type, Set<Quartier> quartiers,Ville ville) {
         this.nom = nom;
         Type = type;
         this.quartiers = quartiers;
+        this.ville = ville;
     }
 
+    public Ville getVille() {
+        return ville;
+    }
 
+    public void setVille(Ville ville) {
+        this.ville = ville;
+    }
 
     public Set<Quartier> getQuartiers() {
         return quartiers;
