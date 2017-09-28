@@ -14,6 +14,10 @@ public class Tournee {
     private  double MntIndemnite;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cyclo_id")
+    private Cyclo cyclo;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "facteur_id")
     private Facteur facteur;
 
@@ -25,13 +29,14 @@ public class Tournee {
     }
 
     public Tournee(long numero, Date dateTournee, double trajetLongeur, double mntIndemnite,
-                   Site site,Facteur facteur) {
+                   Site site,Facteur facteur, Cyclo cyclo) {
         this.numero = numero;
         this.dateTournee = dateTournee;
         this.trajetLongeur = trajetLongeur;
         this.MntIndemnite = mntIndemnite;
         this.site = site;
         this.facteur = facteur;
+        this.cyclo = cyclo;
     }
 
 
@@ -81,5 +86,13 @@ public class Tournee {
 
     public void setFacteur(Facteur facteur) {
         this.facteur = facteur;
+    }
+
+    public Cyclo getCyclo() {
+        return cyclo;
+    }
+
+    public void setCyclo(Cyclo cyclo) {
+        this.cyclo = cyclo;
     }
 }

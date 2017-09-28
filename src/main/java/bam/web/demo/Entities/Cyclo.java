@@ -1,10 +1,8 @@
 package bam.web.demo.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Cyclo {
@@ -16,14 +14,18 @@ public class Cyclo {
     private Date datePU;
     private String reference;
 
+    @OneToMany(mappedBy = "cyclo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Tournee> tournees;
+
     public Cyclo() {
     }
 
-    public Cyclo(String matricule, Date dateCarteGrise, Date datePU, String reference) {
+    public Cyclo(String matricule, Date dateCarteGrise, Date datePU, String reference,Set<Tournee> tournees) {
         this.matricule = matricule;
         this.dateCarteGrise = dateCarteGrise;
         this.datePU = datePU;
         this.reference = reference;
+        this.tournees = tournees;
     }
 
     public String getMatricule() {
@@ -56,5 +58,13 @@ public class Cyclo {
 
     public void setReference(String reference) {
         this.reference = reference;
+    }
+
+    public Set<Tournee> getTournees() {
+        return tournees;
+    }
+
+    public void setTournees(Set<Tournee> tournees) {
+        this.tournees = tournees;
     }
 }
