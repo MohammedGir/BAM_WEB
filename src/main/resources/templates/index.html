@@ -7,7 +7,13 @@
     <title>Title</title>
 </head>
 <body>
-<p>Hello Manar</p>
+<div th:replace="fragments/header :: header">
+</div>
+<div class="container">
+    <p>Body fff</p>
+
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
 <script type="text/javascript" th:src="@{/lib/js/jquery-3.2.1.js}" />
 <script type="text/javascript" th:src="@{/lib/js/materialize.js}" />
 </body>
