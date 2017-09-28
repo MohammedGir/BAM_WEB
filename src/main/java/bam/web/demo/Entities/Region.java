@@ -1,6 +1,7 @@
 package bam.web.demo.Entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -10,13 +11,19 @@ public class Region {
     private Long id;
     private String nom;
 
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Ville> villes;
+
+
 
     public Region() {
     }
 
-    public Region(String nom ) {
+    public Region(String nom, Set<Ville> villes) {
         this.nom = nom;
+        this.villes = villes;
     }
+
 
     public String getNom() {
         return nom;
@@ -26,6 +33,11 @@ public class Region {
         this.nom = nom;
     }
 
+    public Set<Ville> getVilles() {
+        return villes;
+    }
 
-
+    public void setVilles(Set<Ville> villes) {
+        this.villes = villes;
+    }
 }

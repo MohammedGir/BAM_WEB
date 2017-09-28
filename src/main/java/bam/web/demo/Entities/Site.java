@@ -1,9 +1,7 @@
 package bam.web.demo.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Site {
@@ -13,12 +11,27 @@ public class Site {
     private String nom;
     private String Type;
 
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Quartier> quartiers;
+
+
     public Site() {
     }
 
-    public Site(String nom, String type) {
+    public Site(String nom, String type, Set<Quartier> quartiers) {
         this.nom = nom;
         Type = type;
+        this.quartiers = quartiers;
+    }
+
+
+
+    public Set<Quartier> getQuartiers() {
+        return quartiers;
+    }
+
+    public void setQuartiers(Set<Quartier> quartiers) {
+        this.quartiers = quartiers;
     }
 
     public String getNom() {

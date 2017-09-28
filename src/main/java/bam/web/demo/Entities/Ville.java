@@ -9,13 +9,17 @@ public class Ville {
     private Long id;
     private String nom;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "region_id")
+    private Region region;
+
 
     public Ville() {
     }
 
     public Ville(String nom, Region region) {
         this.nom = nom;
-
+        this.region = region;
     }
 
     public String getNom() {
@@ -26,5 +30,11 @@ public class Ville {
         this.nom = nom;
     }
 
+    public Region getRegion() {
+        return region;
+    }
 
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 }
