@@ -12,4 +12,9 @@ public class HomeController {
         model.addAttribute("message", "Hello World!");
         return "index";
     }
+    @RequestMapping("/test")
+    public String test(Model model) {
+        model.addAttribute("message", "Hello World!");
+        return "index1";
+    }
 }

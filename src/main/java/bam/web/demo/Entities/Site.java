@@ -10,6 +10,7 @@ public class Site {
     private Long id;
     private String nom;
     private String type;
+    private int cp;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ville_id")
@@ -28,10 +29,11 @@ public class Site {
     }
 
 
-    public Site(String nom, String type) {
+    public Site(String nom, int cp, String type, Ville ville) {
         this.nom = nom;
         this.type = type;
-
+        this.ville = ville;
+        this.cp = cp;
 
     }
 
@@ -73,5 +75,13 @@ public class Site {
 
     public void setVille(Ville ville) {
         this.ville = ville;
+    }
+
+    public int getCp() {
+        return cp;
+    }
+
+    public void setCp(int cp) {
+        this.cp = cp;
     }
 }
