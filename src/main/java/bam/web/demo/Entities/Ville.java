@@ -10,20 +10,22 @@ public class Ville {
     private Long id;
     private String nom;
 
+    @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Site> sites;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id")
     private Region region;
 
-    @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Site> sites;
+
 
     public Ville() {
     }
 
-    public Ville(String nom, Region region, Set<Site> sites) {
+    public Ville(String nom, Region region) {
         this.nom = nom;
         this.region = region;
-        this.sites = sites;
+
     }
 
     public String getNom() {
