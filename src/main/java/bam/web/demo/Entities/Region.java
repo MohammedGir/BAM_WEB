@@ -19,9 +19,9 @@ public class Region {
     public Region() {
     }
 
-    public Region(String nom, Set<Ville> villes) {
+    public Region(String nom) {
         this.nom = nom;
-        this.villes = villes;
+
     }
 
 

@@ -9,7 +9,11 @@ public class Site {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nom;
-    private String Type;
+    private String type;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ville_id")
+    private Ville ville;
 
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Quartier> quartiers;
@@ -18,10 +22,10 @@ public class Site {
     public Site() {
     }
 
-    public Site(String nom, String type, Set<Quartier> quartiers) {
+    public Site(String nom, String type) {
         this.nom = nom;
-        Type = type;
-        this.quartiers = quartiers;
+        this.type = type;
+
     }
 
 
@@ -43,10 +47,18 @@ public class Site {
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        type = type;
+    }
+
+    public Ville getVille() {
+        return ville;
+    }
+
+    public void setVille(Ville ville) {
+        this.ville = ville;
     }
 }

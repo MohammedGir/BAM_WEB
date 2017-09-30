@@ -1,6 +1,7 @@
 package bam.web.demo.Entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Ville {
@@ -8,6 +9,9 @@ public class Ville {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nom;
+
+    @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Site> sites;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id")
@@ -36,5 +40,13 @@ public class Ville {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Set<Site> getSites() {
+        return sites;
+    }
+
+    public void setSites(Set<Site> sites) {
+        this.sites = sites;
     }
 }
