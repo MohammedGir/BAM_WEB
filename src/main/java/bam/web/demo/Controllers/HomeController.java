@@ -13,8 +13,9 @@ public class HomeController {
         return "index";
     }
     @RequestMapping("/region")
-    public String test(Model model) {
+    public String region(Model model) {
         model.addAttribute("message", "Hello World!");
         return "region";
     }
+
 }

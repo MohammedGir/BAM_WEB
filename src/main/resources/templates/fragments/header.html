@@ -1,20 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    ...
-</head>
-<body>
-<div class="" th:fragment="header">
-    <nav class="yellow" role="navigation">
-        <div class="nav-wrapper container">
-            <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
-            </ul>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body id="top">
+<div class="page-header" th:fragment="header">
+    <div class="wrapper row0">
+        <div id="topbar" class="hoc clear">
+            <!-- ################################################################################################ -->
+
+            <div class="fl_right">
+                <ul class="nospace">
+                    <li><i class="fa fa-phone"></i> +212 656557890</li>
+                    <li><i class="fa fa-envelope-o"></i> manar@domain.com</li>
+                </ul>
+            </div>
+            <!-- ################################################################################################ -->
         </div>
-    </nav>
+    </div>
+    <!-- ################################################################################################ -->
+    <div class="wrapper row1">
+        <header id="header" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <div id="logo" class="fl_left">
+                <h1><a href="index.html">POSTE MAROC</a></h1>
+
+            </div>
+            <!-- ################################################################################################ -->
+            <nav id="mainav" class="fl_right">
+                <ul class="clear">
+                    <li class="active"><a href="index.html">Accueil</a></li>
+                    <li><a class="drop" href="/pages/tournee.js">Tournées</a>
+                        <ul>
+                            <li><a href="pages/gallery.html"></a></li>
+                            <li><a href="pages/full-width.html"></a></li>
+                        </ul>
+                    </li>
+                    <li ><a class="drop" href="pages/gallery.html">RH</a>
+                        <ul class="drop" href="#">
+                            <li><a class="drop" href="#">Personnel</a></li>
+                            <li><a class="drop" href="#">Facteurs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Cyclo</a></li>
+                    <li><a href="#">ZND</a></li>
+                    <li><a href="pages/sidebar-right.html">BLS</a></li>
+                    <li><a href="pages/basic-grid.html">Régions</a></li>
+                </ul>
+            </nav>
+            <!-- ################################################################################################ -->
+        </header>
+    </div>
 </div>
 </body>
 </html>

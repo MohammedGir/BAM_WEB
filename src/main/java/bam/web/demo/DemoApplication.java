@@ -22,6 +22,8 @@ public class DemoApplication implements CommandLineRunner {
 	@Transactional
 	public void run(String... strings) throws Exception {
 
-	    initDataBase.init();
+	    initDataBase.initSite();
+	    initDataBase.initTournee();
+
 	}
 }

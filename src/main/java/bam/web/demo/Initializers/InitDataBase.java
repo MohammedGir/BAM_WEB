@@ -2,15 +2,20 @@ package bam.web.demo.Initializers;
 
 import bam.web.demo.Entities.Region;
 import bam.web.demo.Entities.Site;
+import bam.web.demo.Entities.Tournee;
 import bam.web.demo.Entities.Ville;
 import bam.web.demo.Repositories.RegionRepository;
+import bam.web.demo.Repositories.SiteRepository;
+import bam.web.demo.Repositories.TourneeRepository;
 import bam.web.demo.Repositories.VilleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Service
 public class InitDataBase {
@@ -19,7 +24,10 @@ public class InitDataBase {
     private RegionRepository regionRepository;
     @Autowired
     private VilleRepository villeRepository;
-    public void init(){
+    @Autowired
+    private SiteRepository siteRepository;
+
+    public void initSite(){
 
         Region region1 = new Region("CASA-SETTAT-BERRECHID");
 
@@ -93,6 +101,89 @@ public class InitDataBase {
             add(rabatVille);
         }});
 
+
+    }
+    public void initTournee(){
+
+        Site site2Mars = siteRepository.findOne(new Long(9));
+        Site siteMaarif = siteRepository.findOne(new Long(12));
+        Site siteAgdal = siteRepository.findOne(new Long(6));
+        Site siteAddouha = siteRepository.findOne(new Long(3));
+        Site sitePpal = siteRepository.findOne(new Long(15));
+
+        Set tour1 = new HashSet<Tournee>(){{
+            add(new Tournee(new Long(1111),new GregorianCalendar(2017, 1, 20).getTime(),
+                    new Double(10),new Double(0),site2Mars));
+            add(new Tournee(new Long(1452),new GregorianCalendar(2017, 1, 1).getTime(),
+                    new Double(2),new Double(2),site2Mars));
+            add(new Tournee(new Long(1236),new GregorianCalendar(2017, 1, 6).getTime(),
+                    new Double(3),new Double(12),site2Mars));
+            add(new Tournee(new Long(1452),new GregorianCalendar(2017, 1, 25).getTime(),
+                    new Double(3),new Double(0),site2Mars));
+        }};
+
+        site2Mars.setTournees(tour1);
+
+        Set tour2 = new HashSet<Tournee>(){{
+            add(new Tournee(new Long(1687),new GregorianCalendar(2017, 2, 20).getTime(),
+                    new Double(10),new Double(0),siteMaarif));
+            add(new Tournee(new Long(1236),new GregorianCalendar(2017, 1, 1).getTime(),
+                    new Double(2),new Double(2),siteMaarif));
+            add(new Tournee(new Long(9854),new GregorianCalendar(2017, 3, 6).getTime(),
+                    new Double(3),new Double(12),siteMaarif));
+            add(new Tournee(new Long(9635),new GregorianCalendar(2017, 1, 4).getTime(),
+                    new Double(3),new Double(0),siteMaarif));
+        }};
+
+        siteMaarif.setTournees(tour2);
+
+        Set tour3 = new HashSet<Tournee>(){{
+            add(new Tournee(new Long(9574),new GregorianCalendar(2017, 2, 12).getTime(),
+                    new Double(2),new Double(0),siteAgdal));
+            add(new Tournee(new Long(4521),new GregorianCalendar(2017, 1, 11).getTime(),
+                    new Double(4),new Double(20),siteAgdal));
+            add(new Tournee(new Long(9587),new GregorianCalendar(2017, 3, 7).getTime(),
+                    new Double(3),new Double(120),siteAgdal));
+            add(new Tournee(new Long(9657),new GregorianCalendar(2017, 1, 6).getTime(),
+                    new Double(3),new Double(100),siteAgdal));
+        }};
+
+        siteAgdal.setTournees(tour3);
+
+        Set tour4 = new HashSet<Tournee>(){{
+            add(new Tournee(new Long(5647),new GregorianCalendar(2017, 2, 20).getTime(),
+                    new Double(2),new Double(10),siteAddouha));
+            add(new Tournee(new Long(5698),new GregorianCalendar(2017, 1, 1).getTime(),
+                    new Double(2),new Double(20),siteAddouha));
+            add(new Tournee(new Long(5412),new GregorianCalendar(2017, 3, 6).getTime(),
+                    new Double(5),new Double(112),siteAddouha));
+            add(new Tournee(new Long(5236),new GregorianCalendar(2017, 1, 4).getTime(),
+                    new Double(6),new Double(20),siteAddouha));
+        }};
+
+        siteAddouha.setTournees(tour4);
+
+        Set tour5 = new HashSet<Tournee>(){{
+            add(new Tournee(new Long(4587),new GregorianCalendar(2017, 2, 20).getTime(),
+                    new Double(10),new Double(0),sitePpal));
+            add(new Tournee(new Long(1236),new GregorianCalendar(2017, 1, 1).getTime(),
+                    new Double(2),new Double(2),sitePpal));
+            add(new Tournee(new Long(9854),new GregorianCalendar(2017, 1, 6).getTime(),
+                    new Double(3),new Double(12),sitePpal));
+            add(new Tournee(new Long(9635),new GregorianCalendar(2017, 2, 4).getTime(),
+                    new Double(3),new Double(0),sitePpal));
+        }};
+
+        sitePpal.setTournees(tour5);
+
+
+        siteRepository.save(new HashSet<Site>(){{
+            add(site2Mars);
+            add(siteMaarif);
+            add(siteAddouha);
+            add(sitePpal);
+            add(siteAgdal);
+        }});
 
     }
 }

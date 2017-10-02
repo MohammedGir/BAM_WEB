@@ -33,15 +33,13 @@ public class Tournee {
     }
 
     public Tournee(long numero, Date dateTournee, double trajetLongeur, double mntIndemnite,
-                   Site site, Facteur facteur, Cyclo cyclo, Set<BoiteLettre> boiteLettres) {
+                   Site site) {
         this.numero = numero;
         this.dateTournee = dateTournee;
         this.trajetLongeur = trajetLongeur;
         this.MntIndemnite = mntIndemnite;
         this.site = site;
-        this.facteur = facteur;
-        this.cyclo = cyclo;
-        this.boiteLettres = boiteLettres;
+
     }
 
 

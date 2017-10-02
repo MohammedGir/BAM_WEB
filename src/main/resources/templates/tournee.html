@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+
+
+</head>
+<body >
+
+
+<div th:replace="fragments/header :: header">
+    <div class="page-header"></div>
+</div>
+
+<div class="wrapper row2">
+    <div class="hoc container clear row">
+        <div class="col-md-12">
+            <form class="row form-horizontal" action="#" method="post">
+                <div class="col-md-3">
+                    <div class="form-group row">
+                        <label for="ville" class="col-md-4 control-label">Ville</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="ville" placeholder="Type"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group row">
+                        <label for="site" class="col-md-4 control-label">Site</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="site" placeholder="Type"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group row">
+                        <label for="date" class="col-md-4 control-label">Data ></label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="date" placeholder="Type"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn">Recherche</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <ul class="nospace inline pushright">
+                <li><a class="btn" href="#">Ajouter une nouvelle tournée</a></li>
+            </ul>
+            <br/>
+            <table class="table-striped" >
+                <thead class="drop">
+                <tr class="drop">
+                    <th>Numero De Tournée</th>
+                    <th>Date De Tournée</th>
+                    <th >Trajet Longueur</th>
+                    <th >Montant D'Indémnité</th>
+                    <th >Facteur Résponsable</th>
+                    <th >Matricule de Cyclo</th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr th:each="tour :${tours}">
+                    <td th:text="${tour.numero}"></td>
+                    <td th:text="${tour.dateTournee}"></td>
+                    <td th:text="${tour.trajetLongeur}"> :KM</td>
+                    <td th:text="${tour.MntIndemnite}"> :DH</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer">
+    <div class="page-footer"></div>
+</div>
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>
+<script type="text/javascript" th:src="@{../lib/js/jquery-3.2.1.js}" />
+</body>
+</html>
