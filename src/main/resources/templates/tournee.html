@@ -20,7 +20,10 @@
                     <div class="form-group row">
                         <label for="ville" class="col-md-4 control-label">Ville</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="ville" placeholder="Type"/>
+                            <select class="form-control" id="ville" name="id_ville">
+                                <option selected="selected">All</option>
+                                <option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -28,15 +31,17 @@
                     <div class="form-group row">
                         <label for="site" class="col-md-4 control-label">Site</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="site" placeholder="Type"/>
+                            <select class="form-control" id="site" name="id_site">
+                                <option th:each="site : ${sites}" th:value="${site.id}" th:text="${site.nom}"></option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group row">
-                        <label for="date" class="col-md-4 control-label">Data ></label>
+                        <label for="datepicker" class="col-md-4 control-label">Data ></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="date" placeholder="Type"/>
+                            <input type="text" class="form-control" id="datepicker" placeholder="Type"/>
                         </div>
                     </div>
                 </div>
@@ -50,9 +55,10 @@
                 <li><a class="btn" href="#">Ajouter une nouvelle tournée</a></li>
             </ul>
             <br/>
-            <table class="table-striped" >
+            <table class="table-striped" id="dataTable">
                 <thead class="drop">
                 <tr class="drop">
+                    <th>#</th>
                     <th>Numero De Tournée</th>
                     <th>Date De Tournée</th>
                     <th >Trajet Longueur</th>
@@ -63,6 +69,7 @@
                 </thead>
                 <tbody >
                 <tr th:each="tour :${tours}">
+                    <td th:text="${tour.id}"></td>
                     <td th:text="${tour.numero}"></td>
                     <td th:text="${tour.dateTournee}"></td>
                     <td th:text="${tour.trajetLongeur}"> :KM</td>
@@ -82,9 +89,16 @@
 <div th:replace="fragments/footer :: footer">
     <div class="page-footer"></div>
 </div>
-<script type="text/javascript" th:src="@{../layout/scripts/jquery.min.js}"></script>
+<script>
+    $(document).ready(function() {
+        $("#datepicker").datepicker();
+        $('#dataTable').DataTable();
+
+    } );
+</script>
+
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>
-<script type="text/javascript" th:src="@{../lib/js/jquery-3.2.1.js}" />
+
 </body>
 </html>
