@@ -16,4 +16,10 @@ public class SiteService {
     public Iterable<Site> findAllSite(){
         return siteRepository.findAll();
     }
+
+    public Site findSiteById(String param){
+        Long id = Long.parseLong(param);
+
+        return siteRepository.findOne(id);
+    }
 }

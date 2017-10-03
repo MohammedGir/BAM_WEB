@@ -17,15 +17,27 @@ public class Cyclo {
     @OneToMany(mappedBy = "cyclo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Tournee> tournees;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id")
+    private Site site;
+
     public Cyclo() {
     }
 
-    public Cyclo(String matricule, Date dateCarteGrise, Date datePU, String reference,Set<Tournee> tournees) {
+    public Cyclo(String matricule, Date dateCarteGrise, Date datePU, String reference, Site site) {
         this.matricule = matricule;
         this.dateCarteGrise = dateCarteGrise;
         this.datePU = datePU;
         this.reference = reference;
-        this.tournees = tournees;
+        this.site = site;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMatricule() {
@@ -66,5 +78,13 @@ public class Cyclo {
 
     public void setTournees(Set<Tournee> tournees) {
         this.tournees = tournees;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
     }
 }

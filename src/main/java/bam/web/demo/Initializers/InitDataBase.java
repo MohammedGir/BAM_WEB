@@ -1,13 +1,7 @@
 package bam.web.demo.Initializers;
 
-import bam.web.demo.Entities.Region;
-import bam.web.demo.Entities.Site;
-import bam.web.demo.Entities.Tournee;
-import bam.web.demo.Entities.Ville;
-import bam.web.demo.Repositories.RegionRepository;
-import bam.web.demo.Repositories.SiteRepository;
-import bam.web.demo.Repositories.TourneeRepository;
-import bam.web.demo.Repositories.VilleRepository;
+import bam.web.demo.Entities.*;
+import bam.web.demo.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +20,8 @@ public class InitDataBase {
     private VilleRepository villeRepository;
     @Autowired
     private SiteRepository siteRepository;
+    @Autowired
+    private FacteurRepository facteurRepository;
 
     public void initSite(){
 
@@ -105,11 +101,11 @@ public class InitDataBase {
     }
     public void initTournee(){
 
-        Site site2Mars = siteRepository.findOne(new Long(9));
-        Site siteMaarif = siteRepository.findOne(new Long(12));
-        Site siteAgdal = siteRepository.findOne(new Long(6));
-        Site siteAddouha = siteRepository.findOne(new Long(3));
-        Site sitePpal = siteRepository.findOne(new Long(15));
+        Site site2Mars = siteRepository.findOne(new Long(7));
+        Site siteMaarif = siteRepository.findOne(new Long(3));
+        Site siteAgdal = siteRepository.findOne(new Long(9));
+        Site siteAddouha = siteRepository.findOne(new Long(11));
+        Site sitePpal = siteRepository.findOne(new Long(17));
 
         Set tour1 = new HashSet<Tournee>(){{
             add(new Tournee(new Long(1111),new GregorianCalendar(2017, 1, 20).getTime(),
@@ -185,5 +181,110 @@ public class InitDataBase {
             add(siteAgdal);
         }});
 
+    }
+    public void initFacteur(){
+        Site siteAnassi = siteRepository.findOne(new Long(1));
+        Site site2Mars = siteRepository.findOne(new Long(7));
+        Site siteMaarif = siteRepository.findOne(new Long(3));
+        Site siteAgdal = siteRepository.findOne(new Long(9));
+        Site siteAddouha = siteRepository.findOne(new Long(11));
+        Site sitePpal = siteRepository.findOne(new Long(17));
+
+        Set fac1 = new HashSet<Facteur>(){{
+            add(new Facteur("A123654","Ed-daou","Mohammed",site2Mars));
+            add(new Facteur("A1456987","Zaria","Mehdi",site2Mars));
+            add(new Facteur("D123454","Khamli","Amine",site2Mars));
+        }};
+        site2Mars.setFacteurs(fac1);
+
+        Set fac2 = new HashSet<Facteur>(){{
+            add(new Facteur("B1234554","Zarouali","Oussama",siteMaarif));
+            add(new Facteur("C1456987","Abid","Manar",siteMaarif));
+            add(new Facteur("D1224454","Khamli","Laila",siteMaarif));
+        }};
+        siteMaarif.setFacteurs(fac2);
+
+        Set fac3 = new HashSet<Facteur>(){{
+            add(new Facteur("B123478","Fouhami","Amine",siteAgdal));
+            add(new Facteur("C5696987","Fahmi","Youssra",siteAgdal));
+            add(new Facteur("D156454","Yassir","Kamal",siteAgdal));
+        }};
+        siteAgdal.setFacteurs(fac3);
+
+        Set fac4 = new HashSet<Facteur>(){{
+            add(new Facteur("B145478","Benani","Amine",siteAddouha));
+            add(new Facteur("C5696987","Alawi","Mohamed",siteAddouha));
+            add(new Facteur("D156454","Alawi","Hassan",siteAddouha));
+        }};
+
+        Set fac5 = new HashSet<Facteur>(){{
+            add(new Facteur("G14458","Benani","Ali",siteAddouha));
+            add(new Facteur("C5696987","Miar","Salah",siteAddouha));
+            add(new Facteur("D156454","Tawsi","Ayoub",siteAddouha));
+        }};
+        sitePpal.setFacteurs(fac5);
+
+        Set fac6 = new HashSet<Facteur>(){{
+            add(new Facteur("D914458","Benani","Youssef",siteAnassi));
+            add(new Facteur("F5691187","Miar","Kawtar",siteAnassi));
+            add(new Facteur("S156454","Koko","Anass",siteAnassi));
+        }};
+        siteAnassi.setFacteurs(fac6);
+
+        siteRepository.save(new HashSet<Site>(){{
+            add(site2Mars);
+            add(siteMaarif);
+            add(siteAgdal);
+            add(sitePpal);
+            add(siteAddouha);
+            add(siteAnassi);
+
+        }});
+    }
+
+    public void initCyclo(){
+        Site siteAnassi = siteRepository.findOne(new Long(1));
+        Site site2Mars = siteRepository.findOne(new Long(7));
+        Site siteMaarif = siteRepository.findOne(new Long(3));
+        Site siteAgdal = siteRepository.findOne(new Long(9));
+
+        Set cyc1 = new HashSet<Cyclo>(){{
+            add(new Cyclo("12A12547",new GregorianCalendar(2011, 1, 20).getTime(),
+                    new GregorianCalendar(2017, 1, 20).getTime(),"fg45874",siteAnassi));
+            add(new Cyclo("11A12547",new GregorianCalendar(2015, 1, 20).getTime(),
+                    new GregorianCalendar(2018, 1, 20).getTime(),"ref 125478",siteAnassi));
+        }};
+        siteAnassi.setCyclos(cyc1);
+
+        Set cyc2 = new HashSet<Cyclo>(){{
+            add(new Cyclo("12A121257",new GregorianCalendar(2014, 5, 20).getTime(),
+                    new GregorianCalendar(2017, 1, 20).getTime(),"fg4125474",site2Mars));
+            add(new Cyclo("01B12547",new GregorianCalendar(2015, 1, 20).getTime(),
+                    new GregorianCalendar(2017, 0, 1).getTime(),"ref 478",site2Mars));
+        }};
+        site2Mars.setCyclos(cyc2);
+
+        Set cyc3 = new HashSet<Cyclo>(){{
+            add(new Cyclo("18A121257",new GregorianCalendar(2013, 0, 20).getTime(),
+                    new GregorianCalendar(2020, 1, 2).getTime(),"fh115474",siteMaarif));
+            add(new Cyclo("01C12547",new GregorianCalendar(2015, 1, 20).getTime(),
+                    new GregorianCalendar(2016, 0, 11).getTime(),"ref 11478",siteMaarif));
+        }};
+        siteMaarif.setCyclos(cyc3);
+
+        Set cyc4 = new HashSet<Cyclo>(){{
+            add(new Cyclo("18A1111",new GregorianCalendar(2010, 1, 20).getTime(),
+                    new GregorianCalendar(2015, 1, 2).getTime(),"ref11541147",siteAgdal));
+            add(new Cyclo("02C12547",new GregorianCalendar(2015, 1, 20).getTime(),
+                    new GregorianCalendar(2019, 4, 1).getTime(),"ref 1865974",siteAgdal));
+        }};
+        siteAgdal.setCyclos(cyc4);
+
+        siteRepository.save(new HashSet<Site>(){{
+            add(siteAnassi);
+            add(site2Mars);
+            add(siteMaarif);
+            add(siteAgdal);
+        }});
     }
 }

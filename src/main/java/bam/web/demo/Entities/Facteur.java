@@ -12,17 +12,30 @@ public class Facteur {
     private String nom;
     private String prenom;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id")
+    private Site site;
+
     @OneToMany(mappedBy = "facteur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Tournee> tournees;
 
     public Facteur() {
     }
 
-    public Facteur(String matricule, String nom, String prenom, Set<Tournee> tournees) {
+    public Facteur(String matricule, String nom, String prenom,Site site) {
         this.matricule = matricule;
         this.nom = nom;
         this.prenom = prenom;
-        this.tournees = tournees;
+        this.site = site;
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMatricule() {
@@ -55,5 +68,13 @@ public class Facteur {
 
     public void setTournees(Set<Tournee> tournees) {
         this.tournees = tournees;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
     }
 }

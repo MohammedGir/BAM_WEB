@@ -12,6 +12,7 @@ public class Site {
     private String type;
     private int cp;
 
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ville_id")
     private Ville ville;
@@ -22,8 +23,11 @@ public class Site {
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Quartier> quartiers;
 
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Facteur> facteurs;
 
-
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Cyclo> cyclos;
 
     public Site() {
     }
@@ -91,5 +95,21 @@ public class Site {
 
     public void setCp(int cp) {
         this.cp = cp;
+    }
+
+    public Set<Facteur> getFacteurs() {
+        return facteurs;
+    }
+
+    public void setFacteurs(Set<Facteur> facteurs) {
+        this.facteurs = facteurs;
+    }
+
+    public Set<Cyclo> getCyclos() {
+        return cyclos;
+    }
+
+    public void setCyclos(Set<Cyclo> cyclos) {
+        this.cyclos = cyclos;
     }
 }

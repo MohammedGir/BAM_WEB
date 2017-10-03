@@ -9,10 +9,11 @@ import bam.web.demo.Services.VilleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/tournee")
@@ -44,8 +45,26 @@ public class TourneeController {
     }
 
     @PostMapping("/add")
-    public String postForm(@ModelAttribute Tournee tournee){
+    public RedirectView  postForm(@Valid @ModelAttribute("tournee") Tournee tournee,@RequestParam() String id_site,
+                                  BindingResult result){
+        if (result.hasErrors()) {
+            new RedirectView("error");
+        }
 
-        return "tourneeForm";
+        tourneeService.saveTournee(tournee,id_site);
+        System.out.println("#####################################################");
+        System.out.println("Site ID: " + id_site);
+        System.out.println("ID: " + tournee.getId());
+        System.out.println("Numero: " + tournee.getNumero());
+        System.out.println("Date: " + tournee.getDateTournee());
+        System.out.println("Montant: " + tournee.getMntIndemnite());
+        System.out.println("Trajet: " + tournee.getTrajetLongeur());
+        System.out.println("#####################################################");
+        return new RedirectView("all");
+    }
+
+    @GetMapping("/error")
+    public String pageError(){
+        return "error";
     }
 }
