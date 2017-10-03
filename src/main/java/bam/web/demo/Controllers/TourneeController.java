@@ -9,6 +9,9 @@ import bam.web.demo.Services.VilleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -31,5 +34,18 @@ public class TourneeController {
          model.addAttribute("villes",villes);
          model.addAttribute("sites",sites);
         return "tournee";
+    }
+    @GetMapping("/add")
+    public String getForm(Model model){
+        Iterable<Site> sites = siteService.findAllSite();
+        model.addAttribute("tournee", new Tournee());
+        model.addAttribute("sites",sites);
+        return "tourneeForm";
+    }
+
+    @PostMapping("/add")
+    public String postForm(@ModelAttribute Tournee tournee){
+
+        return "tourneeForm";
     }
 }
