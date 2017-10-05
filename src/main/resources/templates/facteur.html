@@ -37,54 +37,40 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-3">
-                    <div class="form-group row">
-                        <label for="datepicker" class="col-md-4 control-label">Data ></label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="datepicker" placeholder="Type"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <button type="submit" class="btn">Recherche</button>
+                    <button type="submit" class="btn">Rechercher</button>
                 </div>
             </form>
         </div>
         <div class="col-md-12">
             <ul class="nospace inline pushright">
-                <li><a class="btn" th:href="@{/tournee/add}">Ajouter une nouvelle tournée</a></li>
+                <li><a class="btn" th:href="@{/facteur/add}">Ajouter Un Facteur</a></li>
             </ul>
             <br/>
             <table class="table-striped" id="dataTable">
-                <caption><h3>Liste Tournée</h3></caption>
+                <caption><h3>Liste Facteur</h3></caption>
                 <thead class="drop">
                 <tr class="drop">
                     <th>#</th>
-                    <th>Numero De Tournée</th>
-                    <th>Date De Tournée</th>
-                    <th >Trajet Longueur</th>
-                    <th >Montant D'Indémnité</th>
-                    <th >Facteur Résponsable</th>
-                    <th >Matricule de Cyclo</th>
+                    <th>Matricule</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Site</th>
                 </tr>
                 </thead>
                 <tbody >
-                <tr th:each="tour :${tours}">
-                    <td th:text="${tour.id}"></td>
-                    <td th:text="${tour.numero}"></td>
-                    <td th:text="${tour.dateTournee}"></td>
-                    <td th:text="${tour.trajetLongeur}"> :KM</td>
-                    <td th:text="${tour.MntIndemnite}"> :DH</td>
+                <tr th:each="fac :${facteurs}">
+                    <td th:text="${fac.id}"></td>
+                    <td th:text="${fac.matricule}"></td>
+                    <td th:text="${fac.nom}"></td>
+                    <td th:text="${fac.prenom}"></td>
                     <td></td>
-                    <td ></td>
                 </tr>
-
                 </tbody>
             </table>
         </div>
-
     </div>
-
 </div>
 
 <div th:replace="fragments/footer :: footer">
