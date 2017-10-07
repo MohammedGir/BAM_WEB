@@ -1,5 +1,7 @@
 package bam.web.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,9 +12,10 @@ public class Ville {
     private Long id;
     private String nom;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Site> sites;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id")
     private Region region;

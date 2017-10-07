@@ -1,5 +1,7 @@
 package bam.web.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -16,16 +18,16 @@ public class Site {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ville_id")
     private Ville ville;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Tournee> tournees;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Quartier> quartiers;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Facteur> facteurs;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Cyclo> cyclos;
 

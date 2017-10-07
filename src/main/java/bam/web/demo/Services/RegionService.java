@@ -14,4 +14,8 @@ public class RegionService {
         return regionRepository.findAll();
     }
 
+    public Region findRegionById(Long region_id){
+       return regionRepository.findOne(region_id);
+    }
+
 }

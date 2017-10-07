@@ -11,14 +11,14 @@
 <div th:replace="fragments/header :: header">
     <div class="page-header"></div>
 </div>
-<div class="container">
-    <div class="wrapper row2">
+<div class="wrapper row2">
+        <div class="container">
         <div class="hoc container clear row">
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <div class="col-md-12">
                         <form class="row form-horizontal" action="#" method="post">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group row">
                                     <label for="region" class="col-md-4 control-label">Région</label>
                                     <div class="col-md-8">
@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group row">
                                     <label for="ville" class="col-md-4 control-label">Site</label>
                                     <div class="col-md-8">
@@ -38,9 +38,6 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <button type="submit" class="btn">Rechercher</button>
                             </div>
                         </form>
                     </div>
@@ -56,18 +53,20 @@
                             <caption><h3>Liste Site</h3></caption>
                             <thead class="drop">
                             <tr class="drop" >
+                                <th>#</th>
                                 <th>Nom de Site</th>
                                 <th>Code Postal</th>
                                 <th>Type</th>
-                                <th>Région</th>
+                                <th>Ville</th>
                             </tr>
                             </thead>
                             <tbody >
                             <tr th:each="site : ${sites}">
+                                <td th:text="${site.id}"></td>
                                 <td th:text="${site.nom}"></td>
                                 <td th:text="${site.cp}"></td>
                                 <td th:text="${site.type}"></td>
-                                <td></td>
+                                <td th:text="${site?.ville.nom}"></td>
                             </tr>
 
                             </tbody>
@@ -83,16 +82,10 @@
 <div th:replace="fragments/footer :: footer">
     <div class="page-footer"></div>
 </div>
-<script>
-    $(document).ready(function() {
-        $("#datepicker").datepicker();
-        $('#dataTable').DataTable();
 
-    } );
-</script>
 
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>
-
+<script type="text/javascript" th:src="@{../local/js/site.js}"></script>
 </body>
 </html>

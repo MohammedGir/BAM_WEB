@@ -9,7 +9,12 @@ import bam.web.demo.Services.VilleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/site")
@@ -31,5 +36,11 @@ public class SiteController {
         model.addAttribute("villes",villes);
         model.addAttribute("sites",sites);
         return "site";
+    }
+    @RequestMapping( value = "/byVille/{id}",method = RequestMethod.GET)
+    public @ResponseBody List<Site> sitesByVille(@PathVariable("id") Long id){
+        Ville ville = villeService.findById(id);
+        List<Site> sites = siteService.findSiteByVille(ville);
+        return sites;
     }
 }
