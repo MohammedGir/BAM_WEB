@@ -38,23 +38,29 @@
     <!-- ################################################################################################ -->
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="index2.html">Accueil</a></li>
+        <li class="active"><a th:href="@{/index}">Accueil</a></li>
+        <li><a class="drop" href="#">Sites</a>
+          <ul class="drop">
+            <li><a class="drop" th:href="@{/site/all}">Consulter</a></li>
+            <li><a class="drop" th:href="@{/site/add}">Ajouter</a></li>
+          </ul>
+        </li>
         <li><a class="drop" href="#">Tournées</a>
-          <ul>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
+          <ul class="drop">
+            <li><a class="drop" th:href="@{/tournee/all}">Consulter</a></li>
+            <li><a class="drop" th:href="@{/tournee/add}">Ajouter</a></li>
           </ul>
         </li>
         <li ><a class="drop" href="#">RH</a>
-            <ul class="drop" href="#">
-                <li><a class="drop" href="#">Personnel</a></li>
-                  <li><a class="drop" href="#">Facteurs</a></li>
-            </ul>
+          <ul class="drop" href="#">
+            <li><a class="drop" href="#">Personnel</a></li>
+            <li><a class="drop" th:href="@{/facteur/all}">Facteurs</a></li>
+          </ul>
         </li>
         <li><a href="#">Cyclo</a></li>
         <li><a href="#">ZND</a></li>
         <li><a href="#">BLS</a></li>
-        <li><a href="#">Régions</a></li>
+        <li><a th:href="@{/region/all}">Régions</a></li>
       </ul>
     </nav>
     <!-- ################################################################################################ -->

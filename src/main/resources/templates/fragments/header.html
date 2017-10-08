@@ -29,7 +29,17 @@
             <nav id="mainav" class="fl_right">
                 <ul class="clear">
                     <li class="active"><a th:href="@{/index}">Accueil</a></li>
-                    <li><a class="drop" th:href="@{/tournee/all}">Tournées</a>
+                    <li><a class="drop" href="#">Sites</a>
+                        <ul class="drop">
+                            <li><a class="drop" th:href="@{/site/all}">Consulter</a></li>
+                            <li><a class="drop" th:href="@{/site/add}">Ajouter</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="drop" href="#">Tournées</a>
+                        <ul class="drop">
+                            <li><a class="drop" th:href="@{/tournee/all}">Consulter</a></li>
+                            <li><a class="drop" th:href="@{/tournee/add}">Ajouter</a></li>
+                        </ul>
                     </li>
                     <li ><a class="drop" href="#">RH</a>
                         <ul class="drop" href="#">
