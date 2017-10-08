@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/tournee")
@@ -43,6 +44,15 @@ public class TourneeController {
         model.addAttribute("sites",sites);
         return "tourneeForm";
     }
+
+    @RequestMapping( value = "/bySite/{id}",method = RequestMethod.GET)
+    public @ResponseBody
+    List<Tournee> tourneeBySite(@PathVariable("id") String id){
+        Site site = siteService.findSiteById(id);
+        List<Tournee> tournees = tourneeService.findTourneeBySite(site);
+        return tournees;
+    }
+
 
     @PostMapping("/add")
     public RedirectView  postForm(@Valid @ModelAttribute("tournee") Tournee tournee,@RequestParam() String id_site,

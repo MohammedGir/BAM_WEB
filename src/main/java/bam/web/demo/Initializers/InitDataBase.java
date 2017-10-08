@@ -54,9 +54,9 @@ public class InitDataBase {
         }});
 
         // initialiser les sites avec les villes
-        Ville casaVille = villeRepository.findOne(new Long(1));
-        Ville settatVille = villeRepository.findOne(new Long(2));
-        Ville rabatVille = villeRepository.findOne(new Long(5));
+        Ville casaVille = villeRepository.findVilleByNom("Casa");
+        Ville settatVille = villeRepository.findVilleByNom("Settat");
+        Ville rabatVille = villeRepository.findVilleByNom("Rabat");
 
         Set site1 = new HashSet<Site>(){{
             add(new Site("CASA 2 MARS", 20502,"CTD",casaVille));
