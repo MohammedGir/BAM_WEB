@@ -14,9 +14,18 @@ $(document).ready(function () {
             },
             { "data": "trajetLongeur" },
             { "data": "mntIndemnite" },
-            {"data":"site.nom"},
-            {"data":"facteur.nom"},
-            {"data":"cyclo.matricule"}
+            {
+                "data":"site.nom",
+                "defaultContent": "Empty"
+            },
+            {
+                "data":"facteur.nom",
+                "defaultContent": ""
+            },
+            {
+                "data":"cyclo.matricule",
+                "defaultContent": ""
+            }
         ]
     });
 
@@ -50,6 +59,26 @@ $(document).ready(function () {
         $.ajax({
             method: "GET",
             url: "/tournee/bySite/"+id,
+            dataType: 'json',
+            success:function (data) {
+                console.log(data)
+                datatable.clear().draw();
+                datatable.rows.add(data); // Add new data
+                datatable.columns.adjust().draw(); // Redraw the DataTable
+
+            },
+            error:function (xhr, status, err) {
+                console.log(status,err);
+            },
+
+        });
+
+    });
+    $('#ville').on('change',function () {
+        var id = $(this).val();
+        $.ajax({
+            method: "GET",
+            url: "/tournee/byVille/"+id,
             dataType: 'json',
             success:function (data) {
                 console.log(data)

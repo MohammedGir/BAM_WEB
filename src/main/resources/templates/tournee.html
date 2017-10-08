@@ -18,18 +18,18 @@
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <form class="row form-horizontal" action="#" method="post">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group row">
                                 <label for="ville" class="col-md-4 control-label">Ville</label>
                                 <div class="col-md-8">
                                     <select class="form-control" id="ville" name="id_ville">
-                                        <option selected="selected">All</option>
+
                                         <option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group row">
                                 <label for="site" class="col-md-4 control-label">Site</label>
                                 <div class="col-md-8">
@@ -38,17 +38,6 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group row">
-                                <label for="datepicker" class="col-md-4 control-label">Data ></label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="datepicker" placeholder="Type"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn">Recherche</button>
                         </div>
                     </form>
                 </div>

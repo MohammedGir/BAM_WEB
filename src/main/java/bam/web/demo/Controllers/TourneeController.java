@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/tournee")
@@ -50,6 +52,18 @@ public class TourneeController {
     List<Tournee> tourneeBySite(@PathVariable("id") String id){
         Site site = siteService.findSiteById(id);
         List<Tournee> tournees = tourneeService.findTourneeBySite(site);
+        return tournees;
+    }
+    @RequestMapping( value = "/byVille/{id}",method = RequestMethod.GET)
+    public @ResponseBody
+    List<Tournee> tourneeByVille(@PathVariable("id") Long id){
+        List<Tournee> tournees = new ArrayList<>();
+        Ville ville = villeService.findById(id);
+        Set<Site> sites = ville.getSites();
+        for (Site site : sites) {
+            List<Tournee> tours = tourneeService.findTourneeBySite(site);
+            tours.forEach(tournee -> tournees.add(tournee));
+        }
         return tournees;
     }
 
