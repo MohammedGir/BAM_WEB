@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+
+
+</head>
+<body >
+
+
+<div th:replace="fragments/header :: header">
+    <div class="page-header"></div>
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Ajouter un Site</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form th:action="@{/site/add}" th:object="${site}" method="post">
+                        <div class="form-group">
+                            <label for="nom">Nom :</label>
+                            <input type="text" class="form-control" th:field="*{nom}" id="nom" placeholder="Nom Site"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <select class="form-control" id="type" name="type" th:field="*{type}">
+                                <option th:value="CTD">CTD</option>
+                                <option th:value="CCI">CCI</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="code">Code Postal</label>
+                            <input type="text" class="form-control" th:field="*{cp}" id="code" placeholder="Code Postal"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="region">Région</label>
+                            <select class="form-control" id="region" name="id_region">
+                                <option th:each="region : ${regions}" th:value="${region.id}" th:text="${region.nom}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ville">Ville</label>
+                            <select class="form-control" id="ville" name="id_ville">
+                                <option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">
+    <div class="page-footer"></div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#datepicker").datepicker();
+    } );
+</script>
+
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>
+
+</body>
+</html>

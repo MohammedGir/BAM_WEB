@@ -80,7 +80,7 @@ public class Site {
     }
 
     public void setType(String type) {
-        type = type;
+        this.type = type;
     }
 
     public Ville getVille() {

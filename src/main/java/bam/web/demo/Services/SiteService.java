@@ -3,6 +3,7 @@ package bam.web.demo.Services;
 import bam.web.demo.Entities.Site;
 import bam.web.demo.Entities.Ville;
 import bam.web.demo.Repositories.SiteRepository;
+import bam.web.demo.Repositories.VilleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import java.util.Set;
 public class SiteService {
     @Autowired
     private SiteRepository siteRepository;
+    @Autowired
+    private VilleRepository villeRepository;
 
     public Iterable<Site> findAllSite(){
         return siteRepository.findAll();
@@ -27,5 +30,16 @@ public class SiteService {
 
     public List<Site> findSiteByVille(Ville ville){
         return siteRepository.findSiteByVille(ville);
+    }
+
+    public void saveSite(Site site, Long id_ville){
+
+        Ville ville = villeRepository.findOne(id_ville);
+        site.setVille(ville);
+        siteRepository.save(site);
+
+
+
+
     }
 }
