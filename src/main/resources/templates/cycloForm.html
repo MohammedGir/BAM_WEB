@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+
+
+</head>
+<body >
+
+
+<div th:replace="fragments/header :: header">
+    <div class="page-header"></div>
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Ajouter un Site</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form th:action="@{/cyclo/add}" th:object="${cyclo}" method="post">
+                        <div class="form-group">
+                            <label for="ville">Ville</label>
+                            <select class="form-control" id="ville" name="id_ville">
+                                <option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="site">Site</label>
+                            <select class="form-control" id="site" name="id_site">
+                                <option th:each="site : ${sites}" th:value="${site.id}" th:text="${site.nom}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="matricule">Matricule :</label>
+                            <input type="text" class="form-control" th:field="*{matricule}" id="matricule" placeholder="Matricule"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateCarteGrise">Date de Carte Grise</label>
+                            <input type="text" class="form-control" th:field="*{dateCarteGrise}" id="dateCarteGrise" placeholder="Carte Grise Date"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="datePU">Date PU</label>
+                            <input type="text" class="form-control" th:field="*{datePU}" id="datePU" placeholder="Date PU"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reference">Réference</label>
+                            <input type="text" class="form-control" th:field="*{reference}" id="reference" placeholder="Réference"/>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">
+    <div class="page-footer"></div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#datepicker").datepicker();
+    } );
+</script>
+
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>
+
+</body>
+</html>

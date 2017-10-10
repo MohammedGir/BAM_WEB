@@ -15,62 +15,68 @@
 <div class="wrapper row2">
     <div class="hoc container clear row">
         <div class="col-md-12">
-            <form class="row form-horizontal" action="#" method="post">
-                <div class="col-md-3">
-                    <div class="form-group row">
-                        <label for="ville" class="col-md-4 control-label">Ville</label>
-                        <div class="col-md-8">
-                            <select class="form-control" id="ville" name="id_ville">
-                                <option selected="selected">All</option>
-                                <option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
-                            </select>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="row form-horizontal" action="#" method="post">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="ville" class="col-md-4 control-label">Ville</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="ville" name="id_ville">
+                                        <option selected="selected">All</option>
+                                        <option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group row">
-                        <label for="site" class="col-md-4 control-label">Site</label>
-                        <div class="col-md-8">
-                            <select class="form-control" id="site" name="id_site">
-                                <option th:each="site : ${sites}" th:value="${site.id}" th:text="${site.nom}"></option>
-                            </select>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="site" class="col-md-4 control-label">Site</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="site" name="id_site">
+                                        <option th:each="site : ${sites}" th:value="${site.id}" th:text="${site.nom}"></option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
+            </div>
 
-                <div class="col-md-3">
-                    <button type="submit" class="btn">Rechercher</button>
-                </div>
-            </form>
         </div>
         <div class="col-md-12">
             <ul class="nospace inline pushright">
                 <li><a class="btn" th:href="@{/cyclo/add}">Ajouter Un Cyclo</a></li>
             </ul>
             <br/>
-            <table class="table-striped" id="dataTable">
-                <caption><h3>Liste Cyclo</h3></caption>
-                <thead class="drop">
-                <tr class="drop">
-                    <th>#</th>
-                    <th>Matricule</th>
-                    <th>Date Carte Grise</th>
-                    <th>Date PU</th>
-                    <th>Réference</th>
-                    <th>Site</th>
-                </tr>
-                </thead>
-                <tbody >
-                <tr th:each="cyc :${Cyclos}">
-                    <td th:text="${cyc.id}"></td>
-                    <td th:text="${cyc.matricule}"></td>
-                    <td th:text="${cyc.dateCarteGrise}"></td>
-                    <td th:text="${cyc.datePU}"></td>
-                    <td th:text="${cyc.reference}"></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <table class="table-striped" id="dataTable">
+                        <caption><h3>Liste Cyclo</h3></caption>
+                        <thead class="drop">
+                        <tr class="drop">
+                            <th>#</th>
+                            <th>Matricule</th>
+                            <th>Date Carte Grise</th>
+                            <th>Date PU</th>
+                            <th>Réference</th>
+                            <th>Site</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr th:each="cyc :${Cyclos}">
+                            <td th:text="${cyc.id}"></td>
+                            <td th:text="${cyc.matricule}"></td>
+                            <td th:text="${cyc.dateCarteGrise}"></td>
+                            <td th:text="${cyc.datePU}"></td>
+                            <td th:text="${cyc.reference}"></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -88,6 +94,6 @@
 
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>
-
+<script type="text/javascript" th:src="@{../local/js/cyclo.js}"></script>
 </body>
 </html>
