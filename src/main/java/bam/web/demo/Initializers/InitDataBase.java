@@ -243,10 +243,10 @@ public class InitDataBase {
     }
 
     public void initCyclo(){
-        Site siteAnassi = siteRepository.findOne(new Long(1));
-        Site site2Mars = siteRepository.findOne(new Long(7));
-        Site siteMaarif = siteRepository.findOne(new Long(3));
-        Site siteAgdal = siteRepository.findOne(new Long(9));
+        Site siteAnassi = siteRepository.findSiteByNom("CASABLANCA ANASSI");
+        Site site2Mars = siteRepository.findSiteByNom("CASA 2 MARS");
+        Site siteMaarif = siteRepository.findSiteByNom("CASA MAARIF");
+        Site siteAgdal = siteRepository.findSiteByNom("RABAT AGDAL");
 
         Set cyc1 = new HashSet<Cyclo>(){{
             add(new Cyclo("12A12547",new GregorianCalendar(2011, 1, 20).getTime(),

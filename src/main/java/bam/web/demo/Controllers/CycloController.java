@@ -7,8 +7,13 @@ import bam.web.demo.Services.VilleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping("/cyclo")
 @Controller
@@ -30,6 +35,29 @@ public class CycloController {
         model.addAttribute("villes",villes);
         return "cyclo";
     }
+
+    @RequestMapping( value = "/bySite/{id}",method = RequestMethod.GET)
+    public @ResponseBody
+    List<Cyclo> cyclosBySite(@PathVariable("id") String id){
+        Site site= siteService.findSiteById(id);
+        List<Cyclo> cyclos = cycloService.findCycloBySite(site);
+        return cyclos;
+    }
+    @RequestMapping( value = "/byVille/{id}",method = RequestMethod.GET)
+    public @ResponseBody
+    List<Cyclo> cyclosByVille(@PathVariable("id") Long id){
+        List<Cyclo> cyclos = new ArrayList<>();
+        Ville ville= villeService.findById(id);
+        List<Site> sites = siteService.findSiteByVille(ville);
+
+        for (Site site : sites){
+          List<Cyclo> cyclos1 = cycloService.findCycloBySite(site);
+            cyclos1.forEach(cyc-> cyclos.add(cyc));
+        }
+
+        return cyclos;
+    }
+
     @RequestMapping( value = "/add",method = RequestMethod.GET)
     public String cycloForm(Model model){
         Iterable<Site> sites = siteService.findAllSite();

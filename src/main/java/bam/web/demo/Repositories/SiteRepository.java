@@ -9,4 +9,6 @@ import java.util.List;
 public interface SiteRepository extends CrudRepository<Site,Long> {
 
     public List<Site> findSiteByVille(Ville ville);
+    public Site findSiteByNom(String nom);
+
 }

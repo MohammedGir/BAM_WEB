@@ -70,7 +70,7 @@
                             <td th:text="${cyc.dateCarteGrise}"></td>
                             <td th:text="${cyc.datePU}"></td>
                             <td th:text="${cyc.reference}"></td>
-                            <td></td>
+                            <td th:text="${cyc?.site?.nom}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -84,13 +84,7 @@
 <div th:replace="fragments/footer :: footer">
     <div class="page-footer"></div>
 </div>
-<script>
-    $(document).ready(function() {
-        $("#datepicker").datepicker();
-        $('#dataTable').DataTable();
 
-    } );
-</script>
 
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>

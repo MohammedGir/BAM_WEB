@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#dateCarteGrise,#datePU").datepicker();
+
    var datatable =  $('#dataTable').DataTable({
        "columns": [
            { "data": "id" },
@@ -27,7 +27,6 @@ $(document).ready(function () {
            }
        ]
    });
-
     $('#ville').on('change',function () {
         var id = $(this).val();
 
@@ -53,7 +52,27 @@ $(document).ready(function () {
         });
 
     });
-  /*  $('#ville').on('change',function () {
+    $('#site').on('change',function () {
+        var id = $(this).val();
+        $.ajax({
+            method: "GET",
+            url: "/cyclo/bySite/"+id,
+            dataType: 'json',
+            success:function (data) {
+                console.log(data)
+                datatable.clear().draw();
+                datatable.rows.add(data); // Add new data
+                datatable.columns.adjust().draw(); // Redraw the DataTable
+
+            },
+            error:function (xhr, status, err) {
+                console.log(status,err);
+            },
+
+        });
+
+    });
+    $('#ville').on('change',function () {
         var id = $(this).val();
         $.ajax({
             method: "GET",
@@ -72,5 +91,5 @@ $(document).ready(function () {
 
         });
 
-    });*/
+    });
 });
