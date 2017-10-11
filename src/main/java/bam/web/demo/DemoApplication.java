@@ -26,6 +26,8 @@ public class DemoApplication implements CommandLineRunner {
 	    initDataBase.initTournee();
 	    initDataBase.initFacteur();
         initDataBase.initCyclo();
+        initDataBase.initBLS();
 
 	}
+
 }

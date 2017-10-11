@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface TourneeRepository  extends CrudRepository<Tournee,Long>{
     public List<Tournee> findTourneeBySite(Site site);
+    public Tournee findTourneeByNumero(Long numero);
 }

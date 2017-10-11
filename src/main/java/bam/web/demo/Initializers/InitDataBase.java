@@ -22,6 +22,8 @@ public class InitDataBase {
     private SiteRepository siteRepository;
     @Autowired
     private FacteurRepository facteurRepository;
+    @Autowired
+    private TourneeRepository tourneeRepository;
 
     public void initSite(){
 
@@ -241,7 +243,6 @@ public class InitDataBase {
 
         }});
     }
-
     public void initCyclo(){
         Site siteAnassi = siteRepository.findSiteByNom("CASABLANCA ANASSI");
         Site site2Mars = siteRepository.findSiteByNom("CASA 2 MARS");
@@ -287,4 +288,70 @@ public class InitDataBase {
             add(siteAgdal);
         }});
     }
+    public void initBLS(){
+        Tournee tour1 = tourneeRepository.findOne(new Long(1));
+        Tournee tour2 = tourneeRepository.findOne(new Long(2));
+        Tournee tour3 = tourneeRepository.findOne(new Long(3));
+        Tournee tour4 = tourneeRepository.findOne(new Long(4));
+        Tournee tour5 = tourneeRepository.findOne(new Long(5));
+
+        Set bls1 = new HashSet<BoiteLettre>(){{
+            add(new BoiteLettre("N° 12, agdal","personnel",10124,"active",tour1));
+            add(new BoiteLettre("N° 125, agdal ","sociate",10200,"active",tour1));
+            add(new BoiteLettre("N° 1254, agdal","personnel",10111,"active",tour1));
+            add(new BoiteLettre("N° 5214, agdal ","personnel",10124,"active",tour1));
+            add(new BoiteLettre("N° 5478, agdal","sociate",10124,"active",tour1));
+        }};
+        tour1.setBoiteLettres(bls1);
+
+        Set bls2 = new HashSet<BoiteLettre>(){{
+            add(new BoiteLettre("N° 1562, agdal","societe",10569,"active",tour2));
+            add(new BoiteLettre("N° 9125, agdal","sociate",10201,"active",tour2));
+            add(new BoiteLettre("N° 2254, agdal","personnel",10181,"active",tour2));
+            add(new BoiteLettre("N° 8214, agdal ","societe",10784,"active",tour2));
+            add(new BoiteLettre("N° 6478, agdal","sociate",10421,"active",tour2));
+            add(new BoiteLettre("N° 7478, agdal","sociate",10181,"active",tour2));
+        }};
+        tour2.setBoiteLettres(bls2);
+
+        Set bls3 = new HashSet<BoiteLettre>(){{
+            add(new BoiteLettre("N° 5562, agdal","personnel",10999,"active",tour3));
+            add(new BoiteLettre("N° 925, agdal","sociate",10985,"active",tour3));
+            add(new BoiteLettre("N° 54, agdal","personnel",10451,"active",tour3));
+            add(new BoiteLettre("N° 8288, agdal ","societe",10789,"active",tour3));
+            add(new BoiteLettre("N° 647, agdal","sociate",10452,"active",tour3));
+            add(new BoiteLettre("N° 7477, agdal","personnel",10771,"active",tour3));
+            add(new BoiteLettre("N° 0178, agdal","personnel",10189,"active",tour3));
+        }};
+        tour3.setBoiteLettres(bls3);
+
+        Set bls4 = new HashSet<BoiteLettre>(){
+            {
+                add(new BoiteLettre("N° 2262, agdal", "personnel", 10222, "active", tour4));
+                add(new BoiteLettre("N° 9254, agdal", "personnel", 10111, "active", tour4));
+                add(new BoiteLettre("N° 5774, agdal", "personnel", 10771, "active", tour4));
+                add(new BoiteLettre("N° 1188, agdal ", "societe", 10119, "active", tour4));
+                add(new BoiteLettre("N° 6147, agdal", "sociate", 10152, "active", tour4));
+            }};
+        tour4.setBoiteLettres(bls4);
+
+        Set bls5 = new HashSet<BoiteLettre>(){
+            {
+                add(new BoiteLettre("N° 2211, agdal", "personnel", 10422, "active", tour5));
+                add(new BoiteLettre("N° 9114, agdal", "personnel", 10911, "active", tour5));
+                add(new BoiteLettre("N° 5794, agdal", "personnel", 10551, "active", tour5));
+                add(new BoiteLettre("N° 88, agdal ", "societe", 10419, "active", tour5));
+
+            }};
+        tour5.setBoiteLettres(bls5);
+
+        tourneeRepository.save(new HashSet<Tournee>(){{
+            add(tour1);
+            add(tour2);
+            add(tour3);
+            add(tour4);
+            add(tour5);
+        }});
+    }
+
 }

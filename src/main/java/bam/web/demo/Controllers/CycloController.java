@@ -7,11 +7,11 @@ import bam.web.demo.Services.VilleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,5 +66,22 @@ public class CycloController {
         model.addAttribute("villes",villes);
         model.addAttribute("cyclo", new Cyclo());
         return "cycloForm";
+    }
+    @PostMapping("/add")
+    public RedirectView postForm(@Valid @ModelAttribute("cyclo") Cyclo cyclo, @RequestParam() String id_site,
+                                 BindingResult result){
+        if (result.hasErrors()) {
+            new RedirectView("error");
+        }
+
+        cycloService.saveCyclo(cyclo,id_site);
+        System.out.println("#####################################################");
+        System.out.println("Site ID: " + id_site);
+        System.out.println("ID: " + cyclo.getId());
+        System.out.println("Reference: " + cyclo.getReference());
+        System.out.println("Date CG: " + cyclo.getDateCarteGrise());
+        System.out.println("Date: " + cyclo.getDatePU());
+        System.out.println("#####################################################");
+        return new RedirectView("all");
     }
 }

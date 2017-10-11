@@ -10,7 +10,9 @@ public class BoiteLettre {
     private String adresse;
     private String type;
     private int cp ;
-    private boolean etat;
+    private String etat;
+
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tournee_id")
@@ -19,7 +21,7 @@ public class BoiteLettre {
     public BoiteLettre() {
     }
 
-    public BoiteLettre(String adresse, String type, int cp, boolean etat,Tournee tournee) {
+    public BoiteLettre(String adresse, String type, int cp, String etat,Tournee tournee) {
         this.adresse = adresse;
         this.type = type;
         this.cp = cp;
@@ -59,11 +61,11 @@ public class BoiteLettre {
         this.cp = cp;
     }
 
-    public boolean isEtat() {
+    public String getEtat() {
         return etat;
     }
 
-    public void setEtat(boolean etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 

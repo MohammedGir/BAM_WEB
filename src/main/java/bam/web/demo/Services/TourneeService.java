@@ -35,4 +35,7 @@ public class TourneeService {
         tournee.setSite(site);
         tourneeRepository.save(tournee);
     }
+    public Tournee findTourneeById(Long id){
+        return tourneeRepository.findOne(id);
+    }
 }
