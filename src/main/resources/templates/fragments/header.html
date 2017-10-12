@@ -47,9 +47,19 @@
                             <li><a class="drop" th:href="@{/facteur/all}">Facteurs</a></li>
                         </ul>
                     </li>
-                    <li><a th:href="@{/cyclo/all}">Cyclo</a></li>
+                    <li><a href="#">Cyclo</a>
+                        <ul class="drop">
+                            <li><a class="drop" th:href="@{/cyclo/all}">Consulter</a></li>
+                            <li><a class="drop" th:href="@{/cyclo/add}">Ajouter</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">ZND</a></li>
-                    <li><a th:href="@{/bls/all}">BLS</a></li>
+                    <li><a href="#">BLS</a>
+                        <ul class="drop">
+                            <li><a class="drop" th:href="@{/bls/all}">Consulter</a></li>
+                            <li><a class="drop" th:href="@{/bls/add}">Ajouter</a></li>
+                        </ul>
+                    </li>
                     <li><a th:href="@{/region/all}">Régions</a></li>
                 </ul>
             </nav>
