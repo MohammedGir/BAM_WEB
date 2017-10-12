@@ -37,12 +37,13 @@ public class blsController {
     }
     @RequestMapping( value = "/byTournee/{id}",method = RequestMethod.GET)
     public @ResponseBody
-    List<BoiteLettre> blsBySite(@PathVariable("id") Long id){
+    List<BoiteLettre> blsByTournee(@PathVariable("id") Long id){
         Tournee tournee= tourneeService.findTourneeById(id);
         List<BoiteLettre> bls = boiteLettreService.findBlsByTournee(tournee);
+        bls.forEach(bl -> System.out.println(bl.getId()));
         return bls;
     }
-    
+
     @RequestMapping( value = "/bySite/{id}",method = RequestMethod.GET)
     public @ResponseBody
     List<BoiteLettre> blsBySite(@PathVariable("id") String id){

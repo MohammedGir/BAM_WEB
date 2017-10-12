@@ -1,5 +1,7 @@
 package bam.web.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -15,6 +17,7 @@ public class Tournee {
     private  double MntIndemnite;
 
     @OneToMany(mappedBy = "tournee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonBackReference
     private Set<BoiteLettre> boiteLettres;
 
     @ManyToOne(fetch = FetchType.EAGER)

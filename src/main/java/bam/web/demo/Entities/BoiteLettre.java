@@ -1,5 +1,7 @@
 package bam.web.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class BoiteLettre {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tournee_id")
+    @JsonManagedReference
     private Tournee tournee;
 
     public BoiteLettre() {
