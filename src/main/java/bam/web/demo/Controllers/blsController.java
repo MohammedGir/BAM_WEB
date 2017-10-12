@@ -7,11 +7,11 @@ import bam.web.demo.Services.TourneeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,5 +56,28 @@ public class blsController {
             bl.forEach(cyc-> bls.add(cyc));
         }
         return bls;
+    }
+
+    @RequestMapping( value = "/add",method = RequestMethod.GET)
+    public String blsForm(Model model){
+        Iterable<Site> sites = siteService.findAllSite();
+        model.addAttribute("sites", sites);
+        model.addAttribute("bls", new BoiteLettre());
+        return "blsForm";
+    }
+    @PostMapping("/add")
+    public RedirectView postForm(@Valid @ModelAttribute("bls") BoiteLettre bls, @RequestParam() Long id_tournee,
+                                 BindingResult result){
+        if (result.hasErrors()) {
+            new RedirectView("error");
+        }
+
+        boiteLettreService.saveBLS(bls,id_tournee);
+        System.out.println("#####################################################");
+        System.out.println("Site ID: " + id_tournee);
+        System.out.println("ID: " + bls.getAdresse());
+        System.out.println("Reference: " + bls.getCp());
+        System.out.println("#####################################################");
+        return new RedirectView("all");
     }
 }

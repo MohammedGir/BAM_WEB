@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+
+
+</head>
+<body >
+
+
+<div th:replace="fragments/header :: header">
+    <div class="page-header"></div>
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Ajouter un Cyclo</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form th:action="@{/bls/add}" th:object="${bls}" method="post">
+                        <div class="form-group">
+                            <label for="site">Site</label>
+                            <select class="form-control" id="site" name="id_site">
+                                <option th:each="site : ${sites}" th:value="${site.id}" th:text="${site.nom}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tournee">Ville</label>
+                            <select class="form-control" id="tournee" name="id_tournee">
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="adresse">Adresse :</label>
+                            <input type="text" class="form-control" th:field="*{adresse}" id="adresse" placeholder="Adresse"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Boite à Lettre Type</label>
+                            <input type="text" class="form-control" th:field="*{type}" id="type" placeholder="Boite à Lettre Type"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="cp">Code Postal</label>
+                            <input type="number" class="form-control" th:field="*{cp}" id="cp" placeholder="Code Postal"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="etat">Etat</label>
+                            <input type="text" class="form-control" th:field="*{etat}" id="etat" placeholder="Réference"/>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">
+    <div class="page-footer"></div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#datepicker").datepicker();
+    } );
+</script>
+
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
+<script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>
+<script type="text/javascript" th:src="@{../local/js/blsForm.js}"></script>
+</body>
+</html>
