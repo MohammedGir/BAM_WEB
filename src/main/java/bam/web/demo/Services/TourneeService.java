@@ -1,8 +1,8 @@
 package bam.web.demo.Services;
 
-import bam.web.demo.Entities.Site;
-import bam.web.demo.Entities.Tournee;
-import bam.web.demo.Entities.Ville;
+import bam.web.demo.Entities.*;
+import bam.web.demo.Repositories.CycloRepository;
+import bam.web.demo.Repositories.FacteurRepository;
 import bam.web.demo.Repositories.TourneeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,9 @@ public class TourneeService {
     @Autowired
     private SiteService siteService;
     @Autowired
-    private VilleService villeService;
+    private CycloRepository cycloRepository;
+    @Autowired
+    private FacteurRepository facteurRepository;
 
     public Iterable<Tournee> findAllTournee(){
         return tourneeRepository.findAll();
@@ -29,7 +31,16 @@ public class TourneeService {
        return tourneeRepository.findTourneeBySite(site);
     }
 
-    public void saveTournee(Tournee tournee, String site_id){
+    public void saveTournee(Tournee tournee, String site_id, Long id_cyclo, Long id_facteur){
+
+        if(id_cyclo != 0){
+            Cyclo cyc = cycloRepository.findOne(id_cyclo);
+            tournee.setCyclo(cyc);
+        }
+        if(id_facteur != 0){
+            Facteur fac = facteurRepository.findOne(id_facteur);
+            tournee.setFacteur(fac);
+        }
 
         Site site = siteService.findSiteById(site_id);
         tournee.setSite(site);

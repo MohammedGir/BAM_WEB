@@ -10,7 +10,15 @@ $(document).ready(function() {
 
         ]
     });
-
+    $('#dataTable tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            datatable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
     $('#region').on('change',function () {
         var id = $(this).val();
 

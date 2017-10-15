@@ -19,7 +19,7 @@
           <form class="form-horizontal" action="#"  th:action="@{/tournee/add}" th:object="${tournee}" method="post">
 
               <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                       <div class="form-group row">
                           <label for="site" class="col-md-6 control-label">Site</label>
                           <div class="col-md-6">
@@ -29,7 +29,7 @@
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                       <div class="form-group row">
                           <label for="numero" class="col-md-6 control-label">N° Tournée</label>
                           <div class="col-md-6">
@@ -37,7 +37,7 @@
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                       <div class="form-group row">
                           <label for="datepicker" class="col-md-6 control-label">Date De Tournée</label>
                           <div class="col-md-6">
@@ -45,7 +45,7 @@
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                       <div class="form-group row">
                           <label for="trajetLongeur" class="col-md-6 control-label">Longueur De Trajet</label>
                           <div class="col-md-6">
@@ -53,37 +53,37 @@
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                       <div class="form-group row">
-                          <label for="MntIndemnite" class="col-md-6 control-label">Longueur De Trajet</label>
+                          <label for="MntIndemnite" class="col-md-6 control-label">Montant Indémnité</label>
                           <div class="col-md-6">
                               <input type="text" class="form-control" th:field="*{MntIndemnite}" id="MntIndemnite" />
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                       <div class="form-group row">
-                          <label for="facteur_id" class="col-md-6 control-label">Site</label>
+                          <label for="cyclo" class="col-md-6 control-label">Matricule Cyclo</label>
                           <div class="col-md-6">
-                              <select class="form-control" id="facteur_id" name="facteur_id">
-                                  <option></option>
+                              <select class="form-control" id="cyclo" name="id_cyclo">
+
                               </select>
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                       <div class="form-group row">
-                          <label for="facteur_id" class="col-md-6 control-label">Site</label>
+                          <label for="facteur" class="col-md-6 control-label">Facteur Responsable</label>
                           <div class="col-md-6">
-                              <select class="form-control" id="facteur_id" name="facteur_id">
-                                  <option></option>
+                              <select class="form-control" id="facteur" name="id_facteur">
+
                               </select>
                           </div>
                       </div>
                   </div>
               </div>
               <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-md-offset-6">
                       <button class="btn btn-primary" type="submit">Submit</button>
                       <button class="btn btn-info" type="reset">Reset</button>
                   </div>
@@ -100,12 +100,12 @@
 </div>
 <script>
     $(document).ready(function() {
-        $("#datepicker").datepicker();
+
     } );
 </script>
 
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.backtotop.js}"></script>
 <script type="text/javascript" th:src="@{../layout/scripts/jquery.mobilemenu.js}"></script>
-
+<script type="text/javascript" th:src="@{../local/js/tourneeForm.js}"></script>
 </body>
 </html>

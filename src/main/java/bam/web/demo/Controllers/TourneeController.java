@@ -69,20 +69,21 @@ public class TourneeController {
 
 
     @PostMapping("/add")
-    public RedirectView  postForm(@Valid @ModelAttribute("tournee") Tournee tournee,@RequestParam() String id_site,
-                                  BindingResult result){
+    public RedirectView  postForm(@Valid @ModelAttribute("tournee") Tournee tournee
+            ,@RequestParam() String id_site
+            ,@RequestParam(value = "id_cyclo", required=false, defaultValue="0") Long id_cyclo
+            ,@RequestParam(value = "id_facteur", required=false, defaultValue="0") Long id_facteur
+            , BindingResult result){
         if (result.hasErrors()) {
             new RedirectView("error");
         }
 
-        tourneeService.saveTournee(tournee,id_site);
+        tourneeService.saveTournee(tournee,id_site,id_cyclo,id_facteur);
         System.out.println("#####################################################");
         System.out.println("Site ID: " + id_site);
-        System.out.println("ID: " + tournee.getId());
-        System.out.println("Numero: " + tournee.getNumero());
-        System.out.println("Date: " + tournee.getDateTournee());
-        System.out.println("Montant: " + tournee.getMntIndemnite());
-        System.out.println("Trajet: " + tournee.getTrajetLongeur());
+        System.out.println("ID Cyclo: " + id_cyclo);
+        System.out.println("ID Facteur: " + id_facteur);
+
         System.out.println("#####################################################");
         return new RedirectView("all");
     }
